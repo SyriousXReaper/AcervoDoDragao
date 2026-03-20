@@ -1,0 +1,114 @@
+html, body {
+    background: radial-gradient(circle at top, #1a1a1a 0%, #000 100%);
+    color: #e6e6e6 !important;
+}
+
+h1, h2, h3, h4, h5 {
+    color: #ffffff !important;
+}
+
+h2 {
+    color: #ff2a2a !important;
+    font-family: 'Cinzel', serif;
+}
+
+p {
+    color: #cccccc !important;
+}
+
+strong {
+    color: #ff2a2a !important;
+}
+
+a {
+    color: #ff2a2a !important;
+}
+
+a:hover {
+        color: #ff6666 !important;
+}
+
+
+.navbar-dragon {
+    background-color: #111 !important;
+    border-bottom: 2px solid #8b0000;
+}
+
+.logo-banner {
+    width: 440px; 
+    max-width: 100%;
+    filter: drop-shadow(0 0 20px rgba(255,0,0,0.8));
+}
+
+    .logo-banner:hover {
+        transform: scale(1.05);
+    }
+
+.banner-dragon {
+    margin-top: 40px;
+    margin-bottom: 40px; 
+    display: flex;
+    align-items: center;
+}
+
+.livros-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px 40px;
+    scroll-behavior: smooth;
+    cursor: grab;
+}
+
+    .livros-container:active {
+        cursor: grabbing;
+    }
+
+    .livros-container::-webkit-scrollbar {
+        display: none;
+    }
+
+.livro-card {
+    min-width: 200px;
+    max-width: 200px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .livro-card img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .livro-card:hover {
+        transform: scale(1.1);
+        z-index: 5;
+    }
+
+.livros-container:hover .livro-card {
+    opacity: 0.5;
+}
+
+.livros-container .livro-card:hover {
+    opacity: 1;
+}
+
+#sugestoes {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+#sugestoes li {
+        background-color: #1a1a1a;
+        color: white;
+        border: 1px solid #333;
+}
+
+#sugestoes li:hover {
+            background-color: #8b0000;
+}

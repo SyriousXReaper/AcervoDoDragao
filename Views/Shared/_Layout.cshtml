@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - Acervo do Dragão</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-dark navbar-dragon p-2">
+
+            <a class="nav-link text-white"
+               asp-controller="Home"
+               asp-action="Index">
+                Início
+            </a>
+
+            <form class="d-flex ms-auto" asp-controller="Home" asp-action="Index" method="get">
+
+                <div style="position: relative; width: 250px;">
+                    <input id="buscaInput"
+                           name="termo"
+                           class="form-control"
+                           type="search"
+                           placeholder="Buscar livros..."
+                           autocomplete="off">
+
+                    <ul id="sugestoes" class="list-group"></ul>
+                </div>
+
+                <button class="btn btn-danger ms-2" type="submit">Buscar</button>
+
+            </form>
+
+        </nav>
+    </header>
+
+   
+    <div class="container mt-4">
+        @RenderBody()
+    </div>
+
+    <footer class="footer-dragon mt-5">
+        <div class="container text-center py-3">
+            <p>© 2026 - Acervo do Dragão</p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const livros = [
+                "Guerra dos Tronos",
+                "Frankenstein",
+                "O Médico e o Monstro",
+                "It: A Coisa",
+                "Neuromancer"
+            ];
+
+            const input = document.getElementById("buscaInput");
+            const lista = document.getElementById("sugestoes");
+
+            if (!input || !lista) return;
+
+            input.addEventListener("input", function () {
+                const valor = input.value.toLowerCase();
+                lista.innerHTML = "";
+
+                if (valor.length === 0) return;
+
+                const filtrados = livros.filter(l =>
+                    l.toLowerCase().startsWith(valor)
+                );
+
+                filtrados.forEach(livro => {
+                    const li = document.createElement("li");
+                    li.classList.add("list-group-item");
+                    li.style.cursor = "pointer";
+                    li.textContent = livro;
+
+                    li.onclick = () => {
+                        input.value = livro;
+                        lista.innerHTML = "";
+                    };
+
+                    lista.appendChild(li);
+                });
+            });
+
+            document.addEventListener("click", (e) => {
+                if (!input.contains(e.target) && !lista.contains(e.target)) {
+                    lista.innerHTML = "";
+                }
+            });
+
+        });
+    </script>
+
+</body>
+</html>

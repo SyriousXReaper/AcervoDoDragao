@@ -1,0 +1,30 @@
+﻿@model BibliotecaMVC.Models.Autor
+
+<h1>@Model.Nome</h1>
+
+<img src="@Model.Foto" style="width:250px">
+
+<p><b>Data de nascimento:</b> @Model.DataNascimento</p>
+
+<p>@Model.Biografia</p>
+
+<h2>Livros do autor</h2>
+
+<ul>
+
+    @foreach (var livro in BibliotecaMVC.Models.BibliotecaCatalogo.Livros.Where(l => l.AutorId == Model.Id))
+    {
+        <li>
+
+            <a asp-controller="Livro"
+               asp-action="Detalhes"
+               asp-route-id="@livro.Id">
+
+                @livro.Titulo
+
+            </a>
+
+        </li>
+    }
+
+</ul>

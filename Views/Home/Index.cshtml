@@ -1,0 +1,45 @@
+﻿<div class="banner-dragon">
+
+    <img src="~/img/logo.png" class="logo-banner" />
+
+</div>
+
+<h2 class="mb-4">Destaques</h2>
+
+<div class="livros-container">
+    @foreach (var livro in Model)
+    {
+        <a asp-controller="Livro"
+           asp-action="Detalhes"
+           asp-route-id="@livro.Id"
+           class="livro-card">
+
+            <img src="@livro.Capa" />
+        </a>
+    }
+</div>
+
+<script>
+    const slider = document.querySelector(".livros-container");
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener("mousedown", (e) => {
+        isDown = true;
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+    });
+
+    slider.addEventListener("mouseleave", () => isDown = false);
+    slider.addEventListener("mouseup", () => isDown = false);
+
+    slider.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2;
+        slider.scrollLeft = scrollLeft - walk;
+    });
+</script>
