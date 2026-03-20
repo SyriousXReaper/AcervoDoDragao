@@ -1,6 +1,6 @@
 -Clone o repositorio: git clone https://github.com/SyriousXReaper/AcervoDoDragao.git
 
--Acesse a pasta do projeto e rode: cd BibliotecaMVC
+-Acesse a pasta do projeto: cd BibliotecaMVC
 
 -Execute o projeto: dotnet run
 
